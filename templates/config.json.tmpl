@@ -1,0 +1,15 @@
+{
+{{if (eq (getv "/self/container/service_index") "1") }}    "bootstrap": true,
+{{- else}}
+    "retry_join": [{{ $containerName := getv "/self/service/containers/0"}}"{{getv (printf "/containers/%s/primary_ip" $containerName)}}"],
+    "bootstrap": false,
+{{- end}}
+    "server": true,
+    "datacenter": "dc1",
+    "advertise_addr": "{{getv "/self/container/primary_ip"}}",
+    "bind_addr": "{{getv "/self/container/primary_ip"}}",
+    "client_addr": "{{getv "/self/container/primary_ip"}}",
+    "data_dir": "/var/consul",
+    "ui": true,
+    "log_level": "INFO"
+}

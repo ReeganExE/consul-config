@@ -1,0 +1,11 @@
+[template]
+src = "config.json.tmpl"
+dest = "/opt/rancher/config/config.json"
+owner = "root"
+mode = "0644"
+keys = [
+  "/self/service/containers",
+  "/containers",
+  "/self/container/primary_ip",
+  "/self/container/service_index",
+]
